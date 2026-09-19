@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Especial ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 20px; /* Asegura espacio arriba y abajo para que nunca se pegue a los bordes */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Evita que se corte la parte superior si la tarjeta es muy alta */
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow-y: auto; /* Habilita el scroll vertical explícitamente */
+            overflow-x: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 40px; /* Margen interno amplio */
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            text-align: left;
+            position: relative;
+            z-index: 10;
+            margin: auto; /* Centra la tarjeta dinámicamente */
+            height: auto; /* Altura dinámica que crece con el contenido */
+        }
+
+        .header {
+            font-family: 'Fira Code', monospace;
+            color: #d81b60;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(216, 27, 96, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .content {
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            min-height: 380px; /* Previene que el botón salte demasiado mientras escribe */
+        }
+
+        .highlight {
+            color: #d81b60;
+            font-weight: 600;
+        }
+
+        .tag {
+            font-family: 'Fira Code', monospace;
+            color: #ad1457;
+            font-size: 0.9rem;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 10px; /* Da respiro en la parte baja de la tarjeta */
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+
+        .btn {
+            background: #d81b60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-family: 'Fira Code', monospace;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);
+            transition: transform 0.3s, background 0.3s;
+            width: 100%; /* Aprovecha el espacio */
+            white-space: normal; /* Evita que el texto largo corte el botón */
+            word-wrap: break-word;
+        }
+
+        .btn:hover {
+            background: #ad1457;
+            transform: translateY(-2px);
+        }
+
+        .heart {
+            position: fixed; /* Fixed asegura que cubran la pantalla, aunque haya scroll */
+            color: #d81b60;
+            font-size: 24px;
+            animation: fall 4s linear infinite;
+            opacity: 0;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) scale(0.5) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- MEDIA QUERIES PARA MÓVILES MÁS ESTRICTAS --- */
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 15px; /* Mantiene un espacio seguro del borde del teléfono */
+            }
+            .card {
+                padding: 35px 25px; /* Márgenes internos amplios pero ajustados a celular */
+            }
+            .content {
+                font-size: 1rem;
+                min-height: 480px; /* Mayor altura mínima ya que el texto ocupa más líneas en móvil */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header">
+            > ./ejecutar_plan_perfecto.sh <br>
+            > Status: <span style="color: #4caf50;">Ready</span>
+        </div>
+        
+        <div class="content" id="typewriter"></div>
+
+        <div class="btn-container" id="action-btn">
+            <button class="btn" onclick="acceptInvite()">> accept()</button>
+        </div>
+    </div>
+
+    <script>
+        const text = `
+<span class="tag">&lt;evento&gt;</span>
+Hola. Tienes una cita programada.
+<br><br>
+<span class="tag">&lt;fecha&gt;</span> Desde el sábado 3 de octubre hasta el domingo 4 de octubre.
+<br><br>
+Para que el sistema funcione a la perfección, hay algunas <span class="highlight">dependencias requeridas</span> que debes traer contigo:
+<br>
+- Tu belleza natural.
+<br>
+- Un traje de baño.
+<br>
+- Ponerte muy bonita.
+<br>
+- Y lo más importante: simplemente ser tú misma.
+<br><br>
+<span class="tag">&lt;promesa&gt;</span> 
+Te garantizo que disfrutarás este día de principio a fin, y será completamente inolvidable. 
+<span class="tag">&lt;/promesa&gt;</span>
+<br><br>
+¿Aceptas inicializar este fin de semana?
+<span class="tag">&lt;/evento&gt;</span>
+`;
+
+        const typewriterElement = document.getElementById('typewriter');
+        const btnContainer = document.getElementById('action-btn');
+        let i = 0;
+        let isTag = false;
+        let currentHTML = "";
+
+        function typeWriter() {
+            if (i < text.length) {
+                if (text.charAt(i) === '<') {
+                    isTag = true;
+                }
+                
+                currentHTML += text.charAt(i);
+                typewriterElement.innerHTML = currentHTML;
+
+                if (text.charAt(i) === '>') {
+                    isTag = false;
+                }
+
+                i++;
+                
+                let speed = isTag ? 2 : 35;
+                setTimeout(typeWriter, speed);
+            } else {
+                btnContainer.style.opacity = 1;
+            }
+        }
+
+        window.onload = () => {
+            setTimeout(typeWriter, 1000);
+        };
+
+        function acceptInvite() {
+            const btn = document.querySelector('.btn');
+            btn.innerHTML = "> inicializando_magia... ⏳";
+            btn.style.background = "#4caf50";
+            
+            // Generar corazones cayendo
+            for(let j = 0; j < 40; j++) {
+                setTimeout(createHeart, j * 150);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            // Posición horizontal aleatoria
+            heart.style.left = Math.random() * 100 + 'vw';
+            // Duración de la caída aleatoria para dar naturalidad
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            // Tamaño ligeramente variado
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
+            document.body.appendChild(heart);
+            
+            // Eliminar elemento del DOM cuando termina su caída
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
