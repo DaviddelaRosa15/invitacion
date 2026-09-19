@@ -5,124 +5,228 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación Especial ❤️</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --rose-50: #fff1f6;
+            --rose-100: #ffe4ef;
+            --rose-200: #ffc5db;
+            --rose-300: #ff9bc1;
+            --rose-500: #e91e63;
+            --rose-600: #d81b60;
+            --rose-700: #ad1457;
+            --pink-900: #4a1335;
+            --white-soft: rgba(255,255,255,0.52);
+            --white-border: rgba(255,255,255,0.7);
+            --text-main: #3d2a35;
+            --text-soft: #6f4a58;
+            --success: #2fbf71;
+        }
 
         * {
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            padding: 40px 20px; /* Asegura espacio arriba y abajo para que nunca se pegue a los bordes */
             min-height: 100vh;
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Evita que se corte la parte superior si la tarjeta es muy alta */
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            align-items: flex-start;
+            background:
+                radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(255,255,255,0.5), transparent 25%),
+                linear-gradient(135deg, #ffb3c6 0%, #ffd7e7 22%, #fcd7ec 52%, #f7d9ff 100%);
+            color: var(--text-main);
             font-family: 'Poppins', sans-serif;
-            overflow-y: auto; /* Habilita el scroll vertical explícitamente */
             overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            padding: 40px; /* Margen interno amplio */
-            max-width: 550px;
-            width: 100%;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            text-align: left;
             position: relative;
-            z-index: 10;
-            margin: auto; /* Centra la tarjeta dinámicamente */
-            height: auto; /* Altura dinámica que crece con el contenido */
+            z-index: 2;
+            width: min(100%, 560px);
+            padding: 32px 28px 26px;
+            border-radius: 28px;
+            background: rgba(255,255,255,0.32);
+            border: 1px solid var(--white-border);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 18px 40px rgba(168, 60, 98, 0.18), inset 0 1px 0 rgba(255,255,255,0.7);
+            overflow: hidden;
+            animation: floatCard 5s ease-in-out infinite alternate;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent 35%, rgba(216,27,96,0.06));
+            pointer-events: none;
+        }
+
+        @keyframes floatCard {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-6px); }
         }
 
         .header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 24px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(216, 27, 96, 0.16);
             font-family: 'Fira Code', monospace;
-            color: #d81b60;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(216, 27, 96, 0.2);
-            padding-bottom: 15px;
+            font-size: 0.82rem;
+            line-height: 1.8;
+            color: var(--rose-700);
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 18px rgba(216,27,96,0.12);
+        }
+
+        .status {
+            color: #188a54;
+            font-weight: 700;
         }
 
         .content {
-            color: #4a4a4a;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            min-height: 380px; /* Previene que el botón salte demasiado mientras escribe */
+            position: relative;
+            z-index: 1;
+            min-height: 390px;
+            color: var(--text-main);
+            font-size: 1.08rem;
+            line-height: 1.78;
+            letter-spacing: 0.01em;
+        }
+
+        .content strong {
+            color: var(--rose-700);
         }
 
         .highlight {
-            color: #d81b60;
-            font-weight: 600;
+            color: var(--rose-600);
+            font-weight: 700;
         }
 
         .tag {
             font-family: 'Fira Code', monospace;
-            color: #ad1457;
-            font-size: 0.9rem;
+            color: var(--rose-700);
+            font-size: 0.82rem;
+            font-weight: 600;
         }
 
         .btn-container {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            margin-top: 40px;
-            margin-bottom: 10px; /* Da respiro en la parte baja de la tarjeta */
+            margin-top: 30px;
             opacity: 0;
             transition: opacity 1s ease-in;
         }
 
         .btn {
-            background: #d81b60;
-            color: white;
+            width: 100%;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ef2a7c 0%, #d81b60 35%, #b71c4d 100%);
+            color: #fff;
+            padding: 17px 24px;
             font-family: 'Fira Code', monospace;
-            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);
-            transition: transform 0.3s, background 0.3s;
-            width: 100%; /* Aprovecha el espacio */
-            white-space: normal; /* Evita que el texto largo corte el botón */
+            box-shadow: 0 10px 22px rgba(216,27,96,0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+            white-space: normal;
             word-wrap: break-word;
         }
 
         .btn:hover {
-            background: #ad1457;
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 14px 28px rgba(216,27,96,0.42);
+            filter: brightness(1.05);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #24c47a 0%, #1fa66a 100%);
+            box-shadow: 0 10px 24px rgba(31,166,106,0.25);
         }
 
         .heart {
-            position: fixed; /* Fixed asegura que cubran la pantalla, aunque haya scroll */
-            color: #d81b60;
+            position: fixed;
+            left: 0;
+            top: -10vh;
+            color: #ff4d8d;
             font-size: 24px;
-            animation: fall 4s linear infinite;
-            opacity: 0;
-            z-index: 9999;
+            user-select: none;
             pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            animation: fall 4.5s linear forwards;
+            text-shadow: 0 0 12px rgba(255, 77, 141, 0.4);
         }
 
         @keyframes fall {
-            0% { transform: translateY(-10vh) scale(0.5) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(110vh) scale(1.5) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translateY(-10vh) scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) scale(1.4) rotate(360deg);
+                opacity: 0;
+            }
         }
 
-        /* --- MEDIA QUERIES PARA MÓVILES MÁS ESTRICTAS --- */
         @media (max-width: 600px) {
             body {
-                padding: 30px 15px; /* Mantiene un espacio seguro del borde del teléfono */
+                padding: 22px 14px 30px;
             }
+
             .card {
-                padding: 35px 25px; /* Márgenes internos amplios pero ajustados a celular */
+                padding: 24px 18px 20px;
+                border-radius: 22px;
             }
+
+            .header {
+                font-size: 0.76rem;
+            }
+
             .content {
+                min-height: 430px;
                 font-size: 1rem;
-                min-height: 480px; /* Mayor altura mínima ya que el texto ocupa más líneas en móvil */
+                line-height: 1.7;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                letter-spacing: 0.03em;
             }
         }
     </style>
@@ -132,9 +236,9 @@
     <div class="card">
         <div class="header">
             > ./ejecutar_plan_perfecto.sh <br>
-            > Status: <span style="color: #4caf50;">Ready</span>
+            > Status: <span class="status">Ready</span>
         </div>
-        
+
         <div class="content" id="typewriter"></div>
 
         <div class="btn-container" id="action-btn">
@@ -145,30 +249,31 @@
     <script>
         const text = `
 <span class="tag">&lt;evento&gt;</span>
-Hola. Tienes una cita programada.
+Hola. Tienes una cita programada con la mejor versión de este fin de semana.
 <br><br>
 <span class="tag">&lt;fecha&gt;</span> Desde el sábado 3 de octubre hasta el domingo 4 de octubre.
 <br><br>
-Para que el sistema funcione a la perfección, hay algunas <span class="highlight">dependencias requeridas</span> que debes traer contigo:
+Para que este plan funcione a la perfección, necesitas traer algunas <span class="highlight">dependencias indispensables</span>:
 <br>
 - Tu belleza natural.
 <br>
 - Un traje de baño.
 <br>
-- Ponerte muy bonita.
+- Mucha energía y buen humor.
 <br>
 - Y lo más importante: simplemente ser tú misma.
 <br><br>
-<span class="tag">&lt;promesa&gt;</span> 
-Te garantizo que disfrutarás este día de principio a fin, y será completamente inolvidable. 
+<span class="tag">&lt;promesa&gt;</span>
+Te prometo que este día será relajante, divertido, mágico y completamente inolvidable.
 <span class="tag">&lt;/promesa&gt;</span>
 <br><br>
-¿Aceptas inicializar este fin de semana?
+¿Aceptas iniciar este viaje junto a mí?
 <span class="tag">&lt;/evento&gt;</span>
 `;
 
         const typewriterElement = document.getElementById('typewriter');
         const btnContainer = document.getElementById('action-btn');
+        const btn = document.querySelector('.btn');
         let i = 0;
         let isTag = false;
         let currentHTML = "";
@@ -178,7 +283,7 @@ Te garantizo que disfrutarás este día de principio a fin, y será completament
                 if (text.charAt(i) === '<') {
                     isTag = true;
                 }
-                
+
                 currentHTML += text.charAt(i);
                 typewriterElement.innerHTML = currentHTML;
 
@@ -187,47 +292,48 @@ Te garantizo que disfrutarás este día de principio a fin, y será completament
                 }
 
                 i++;
-                
-                let speed = isTag ? 2 : 35;
+
+                const speed = isTag ? 2 : 28;
                 setTimeout(typeWriter, speed);
             } else {
                 btnContainer.style.opacity = 1;
             }
         }
 
-        window.onload = () => {
-            setTimeout(typeWriter, 1000);
-        };
-
         function acceptInvite() {
-            const btn = document.querySelector('.btn');
-            btn.innerHTML = "> inicializando_magia... ⏳";
-            btn.style.background = "#4caf50";
-            
-            // Generar corazones cayendo
-            for(let j = 0; j < 40; j++) {
+            btn.innerHTML = '> inicializando_magia... ✨';
+            btn.classList.add('btn-success');
+            btn.disabled = true;
+            btn.style.cursor = 'default';
+
+            for (let j = 0; j < 40; j++) {
                 setTimeout(createHeart, j * 150);
             }
+
+            setTimeout(() => {
+                btn.innerHTML = '> invitación aceptada 💖';
+                typewriterElement.innerHTML += '<br><br><span class="highlight">Perfecto. Te estaré esperando con una sonrisa, una playlist y un fin de semana lleno de magia.</span>';
+            }, 1200);
         }
 
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
             heart.innerHTML = '❤️';
-            // Posición horizontal aleatoria
             heart.style.left = Math.random() * 100 + 'vw';
-            // Duración de la caída aleatoria para dar naturalidad
             heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            // Tamaño ligeramente variado
-            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
-            
+            heart.style.fontSize = (Math.random() * 15 + 18) + 'px';
+
             document.body.appendChild(heart);
-            
-            // Eliminar elemento del DOM cuando termina su caída
+
             setTimeout(() => {
                 heart.remove();
             }, 5000);
         }
+
+        window.onload = () => {
+            setTimeout(typeWriter, 500);
+        };
     </script>
 </body>
 </html>
