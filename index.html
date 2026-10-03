@@ -3,93 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tengo una sorpresa para ti 💘</title>
+<title>Una carta para ti 💌</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400;1,9..144,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,600&display=swap');
 
 :root{
-  --night:#16040f; --plum:#2a0a22; --wine:#4a1235;
-  --rose:#ff3d8b; --rose-deep:#d81b60; --blush:#ffd3e4; --cream:#fff4f8;
+  --night:#16040f; --rose:#ff3d8b; --blush:#ffd3e4; --cream:#fff4f8;
   --font-display:'Fraunces',Georgia,serif;
   --font-mono:'Fira Code',ui-monospace,monospace;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0; min-height:100%; padding:28px 16px 40px;
-  display:flex; justify-content:center; align-items:flex-start;
-  background:var(--night); color:var(--cream);
-  font-family:var(--font-display); overflow-x:hidden;
-}
+body{margin:0;min-height:100%;padding:28px 16px 40px;display:flex;justify-content:center;align-items:flex-start;background:var(--night);color:var(--cream);font-family:var(--font-display);overflow-x:hidden}
 
-/* Luces de fondo */
 .glow{position:fixed;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none;z-index:0;animation:drift 14s ease-in-out infinite alternate}
 .g1{width:420px;height:420px;background:#ff3d8b;top:-120px;left:-120px}
 .g2{width:380px;height:380px;background:#8a2be2;bottom:-140px;right:-100px;animation-delay:-6s;opacity:.4}
 @keyframes drift{to{transform:translate(60px,40px) scale(1.15)}}
 
-/* Ventana de terminal */
-.win{
-  position:relative; z-index:2; width:min(100%,540px);
-  border-radius:22px; overflow:hidden;
+.win{position:relative;z-index:2;width:min(100%,560px);border-radius:22px;overflow:hidden;
   background:linear-gradient(160deg,rgba(74,18,53,.88),rgba(26,6,20,.94));
   border:1px solid rgba(255,61,139,.45);
-  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 30px 80px rgba(255,61,139,.22),0 0 60px rgba(255,61,139,.12);
-}
+  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 30px 80px rgba(255,61,139,.22),0 0 60px rgba(255,61,139,.12)}
 .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);font-family:var(--font-mono);font-size:.74rem;color:var(--blush)}
 .bar i{width:11px;height:11px;border-radius:50%;background:var(--rose)}
 .bar i:nth-child(2){background:#ff8fb8}.bar i:nth-child(3){background:var(--blush)}
 .bar span{margin-left:auto;opacity:.7}
 
-.boot{padding:20px 22px 6px;font-family:var(--font-mono);font-size:.82rem;line-height:1.9;color:var(--blush);min-height:130px;transition:min-height .9s ease,opacity .9s ease}
+/* Arranque */
+.boot{padding:20px 22px 6px;font-family:var(--font-mono);font-size:.82rem;line-height:1.9;color:var(--blush);min-height:130px}
 .boot .ok{color:#5ef2a4}
 .boot .cur::after{content:"▍";color:var(--rose);animation:blink 1s steps(2) infinite}
 .meter{height:6px;border-radius:9px;background:rgba(255,255,255,.1);margin:6px 0 4px;overflow:hidden}
 .meter b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rose),#ffb3d1);border-radius:9px;box-shadow:0 0 12px var(--rose)}
 @keyframes blink{50%{opacity:0}}
-.win.done .boot{min-height:0;opacity:.0;height:0;padding:0;overflow:hidden}
+.win.done .boot{display:none}
 
-/* Invitación */
-.invite{padding:6px 24px 28px;text-align:center;display:none}
-.win.done .invite{display:block}
-.reveal{animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
-@keyframes rise{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+/* Carta */
+.letter{display:none;padding:8px 26px 26px;text-align:center}
+.win.done .letter{display:block}
+.rise{animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
 
-.heart{width:132px;height:120px;margin:6px auto 0;overflow:visible;animation:beat 1.3s ease-in-out infinite 2.2s}
-.heart path{fill:rgba(255,61,139,0);stroke:var(--rose);stroke-width:2.6;stroke-linejoin:round;stroke-dasharray:300;stroke-dashoffset:300;
+.heart{width:84px;height:76px;margin:4px auto 0;overflow:visible;animation:beat 1.3s ease-in-out infinite 2.2s}
+.heart path{fill:rgba(255,61,139,0);stroke:var(--rose);stroke-width:2.8;stroke-linejoin:round;stroke-dasharray:300;stroke-dashoffset:300;
   animation:draw 2s ease forwards .2s,fill 1s ease forwards 1.8s;filter:drop-shadow(0 0 10px var(--rose))}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes fill{to{fill:rgba(255,61,139,.9)}}
 @keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.14)}28%{transform:scale(1)}42%{transform:scale(1.09)}70%{transform:scale(1)}}
 
-h1{font-weight:500;font-size:clamp(2rem,8vw,2.9rem);line-height:1.08;margin:14px 0 10px;letter-spacing:-.01em}
-h1 em{font-style:italic;font-weight:600;color:var(--blush)}
-.sub{font-style:italic;font-size:1.08rem;line-height:1.6;color:var(--blush);margin:0 auto 22px;max-width:30ch}
+.to{font-family:var(--font-mono);font-size:.78rem;color:var(--blush);margin:10px 0 0;opacity:.85}
 
-.when{display:inline-block;font-family:var(--font-mono);font-size:.78rem;color:var(--cream);padding:7px 14px;border:1px dashed rgba(255,61,139,.7);border-radius:999px;margin-bottom:18px}
+.stage{min-height:340px;display:flex;align-items:center;justify-content:center;padding:14px 0 6px}
+.page{display:none;text-align:left;font-size:1.12rem;line-height:1.78;color:var(--cream);font-weight:400}
+.page.on{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.page p{margin:0 0 .9em}
+.page em{font-style:italic;font-weight:600;color:var(--blush)}
+.page.ask{text-align:center}
+.page.ask h1{font-weight:500;font-size:clamp(2.1rem,9vw,3.1rem);line-height:1.08;margin:.3em 0 .2em;letter-spacing:-.01em}
+.page.ask h1 em{color:var(--rose);text-shadow:0 0 28px rgba(255,61,139,.7)}
 
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:26px}
-.t{padding:14px 4px 10px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,61,139,.35)}
-.t span{display:block;font-size:clamp(1.8rem,8.5vw,2.5rem);font-weight:600;line-height:1;font-variant-numeric:tabular-nums;color:var(--cream);text-shadow:0 0 18px rgba(255,61,139,.7)}
-.t small{display:block;margin-top:8px;font-family:var(--font-mono);font-size:.68rem;color:var(--blush);opacity:.8}
-.t.tick span{animation:pop .35s ease}
-@keyframes pop{50%{transform:scale(1.12);color:var(--rose)}}
+.dots{display:flex;gap:8px;justify-content:center;margin:10px 0 18px}
+.dots b{width:8px;height:8px;border-radius:50%;background:rgba(255,211,228,.25);transition:all .4s}
+.dots b.on{width:26px;border-radius:9px;background:var(--rose);box-shadow:0 0 12px var(--rose)}
 
-.actions{position:relative;display:flex;flex-direction:column;gap:12px;align-items:center;min-height:116px}
+.actions{display:flex;flex-direction:column;gap:12px;align-items:center}
 .btn{width:100%;border:0;border-radius:999px;padding:17px 22px;font-family:var(--font-mono);font-size:.98rem;font-weight:600;color:#fff;cursor:pointer;
   background:linear-gradient(135deg,#ff3d8b,#d81b60 55%,#a3124a);box-shadow:0 10px 30px rgba(255,61,139,.45);transition:transform .25s,box-shadow .25s}
 .btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 38px rgba(255,61,139,.6)}
-.btn:focus-visible,.maybe:focus-visible{outline:3px solid var(--blush);outline-offset:3px}
+.btn:focus-visible,.ghost:focus-visible{outline:3px solid var(--blush);outline-offset:3px}
 .btn.yes{background:linear-gradient(135deg,#2fd68a,#17a36a);box-shadow:0 10px 30px rgba(47,214,138,.35);cursor:default}
-.maybe{font-family:var(--font-mono);font-size:.8rem;color:var(--blush);background:none;border:1px solid rgba(255,211,228,.35);border-radius:999px;padding:9px 18px;cursor:pointer;transition:transform .25s ease,opacity .4s}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 10px 44px rgba(255,61,139,.85)}}
+.ghost{font-family:var(--font-mono);font-size:.8rem;color:var(--blush);background:none;border:1px solid rgba(255,211,228,.35);border-radius:999px;padding:9px 18px;cursor:pointer;transition:transform .25s ease}
+.back{background:none;border:0;color:var(--blush);opacity:.7;font-family:var(--font-mono);font-size:.78rem;cursor:pointer;padding:4px 8px}
+.back[hidden]{display:none}
 
-.msg{display:none;margin-top:6px;font-style:italic;font-size:1.12rem;line-height:1.6;color:var(--blush)}
+.msg{display:none;margin-top:16px;font-style:italic;font-size:1.12rem;line-height:1.6;color:var(--blush);text-align:center}
 .msg.show{display:block;animation:rise .9s both}
 
-/* Confeti */
 .fx{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;will-change:transform,opacity}
 
-@media (max-width:420px){.invite{padding:4px 16px 24px}.boot{font-size:.76rem}}
+@media (max-width:420px){.letter{padding:6px 18px 22px}.boot{font-size:.76rem}.page{font-size:1.04rem;line-height:1.7}.stage{min-height:420px}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -97,30 +92,50 @@ h1 em{font-style:italic;font-weight:600;color:var(--blush)}
 <div class="glow g1"></div><div class="glow g2"></div>
 
 <main class="win" id="win">
-  <div class="bar"><i></i><i></i><i></i><span>sorpresa.sh</span></div>
-
+  <div class="bar"><i></i><i></i><i></i><span>carta.sh</span></div>
   <div class="boot" id="boot" aria-live="polite"></div>
 
-  <section class="invite" id="invite">
-    <svg class="heart" viewBox="0 0 100 90" aria-hidden="true">
-      <path d="M50 82C10 52 4 28 22 15C34 7 46 12 50 24C54 12 66 7 78 15C96 28 90 52 50 82Z"/>
-    </svg>
-    <h1 class="reveal" style="animation-delay:.9s">Tengo un plan<br>para <em>los dos</em></h1>
-    <p class="sub reveal" style="animation-delay:1.2s">La cita más linda del fin de semana está a punto de comenzar.</p>
-    <div class="reveal" style="animation-delay:1.5s">
-      <div class="when" id="when">sábado · 1:00 p. m.</div>
-      <div class="count" role="timer" aria-label="Cuenta regresiva">
-        <div class="t"><span id="d">00</span><small>días</small></div>
-        <div class="t"><span id="h">00</span><small>horas</small></div>
-        <div class="t"><span id="m">00</span><small>min</small></div>
-        <div class="t" id="st"><span id="s">00</span><small>seg</small></div>
-      </div>
+  <section class="letter" id="letter">
+    <svg class="heart" viewBox="0 0 100 90" aria-hidden="true"><path d="M50 82C10 52 4 28 22 15C34 7 46 12 50 24C54 12 66 7 78 15C96 28 90 52 50 82Z"/></svg>
+    <p class="to rise" style="animation-delay:.9s">// una carta, solo para ti 💌</p>
+
+    <div class="stage">
+      <article class="page" data-i="0">
+        <p>Hoy quiero hacerte una pregunta que viene rondando en mi cabeza desde hace un tiempo. Pero antes de hacértela, quiero que sepas algo: desde que empecé a salir contigo, mi forma de ver el amor, el noviazgo y el futuro cambió por completo.</p>
+        <p>Cada vez que salgo contigo, de una forma u otra <em>el mundo alrededor se apaga</em>; mi mente se despeja y solo existes tú en ese momento, ocupando toda mi atención.</p>
+      </article>
+
+      <article class="page" data-i="1">
+        <p>Admiro profundamente quién eres. Me encanta lo bella que eres, pero sobre todo me fascina que seas <em>tú misma</em> sin importar qué, sin filtros ni miedo a mostrarte tal como eres.</p>
+        <p>También admiro tu fuerza: sé que a veces cargas con situaciones difíciles y que hay días en los que el cansancio pesa, pero aun así te levantas cada mañana con la valentía de seguir luchando.</p>
+      </article>
+
+      <article class="page" data-i="2">
+        <p>Sé que no soy perfecto y tengo mis limitaciones como ser humano, pero siempre me esforzaré por estar ahí para ti.</p>
+        <p>Elegí este día específico por dos razones: la primera, porque quería una fecha que fuera exclusivamente de los dos, sin compromisos familiares de por medio. La segunda, porque a partir del jueves se viene ese pase a producción del que te he hablado (que me tendrá a tope de una a tres semanas), y no quería esperar más. Quería dártelo todo ahora para que <em>jamás dudes</em> de lo mucho que pienso en ti y de la prioridad que tienes para mí.</p>
+      </article>
+
+      <article class="page" data-i="3">
+        <p>Tengo metas muy grandes y me esfuerzo a diario por alcanzar el éxito por el que he venido trabajando. Pero hoy se ha sumado la meta más importante de todas: <em>construir y preparar un futuro juntos</em> (porque definitivamente no quiero que a los 40 estemos matándonos trabajando, jaja).</p>
+      </article>
+
+      <article class="page ask" data-i="4">
+        <p>Por eso hoy quiero preguntarte si quieres caminar a mi lado y ser esa mujer clave en todo lo que construyamos juntos.</p>
+        <h1>¿Quieres ser<br><em>mi novia?</em></h1>
+      </article>
     </div>
-    <div class="actions reveal" id="actions" style="animation-delay:1.8s">
-      <button class="btn" id="yes">&gt; quiero vivirlo 💖</button>
-      <button class="maybe" id="maybe">&gt; déjame pensarlo…</button>
+
+    <div class="dots" id="dots"></div>
+
+    <div class="actions" id="actions">
+      <button class="btn pulse" id="next">&gt; continuar</button>
+      <button class="back" id="prev" hidden>&lt; volver</button>
     </div>
-    <p class="msg" id="msg">Perfecto. Te esperaré con el mejor plan, una sonrisa enorme y un fin de semana lleno de momentos que querrás repetir.</p>
+    <div class="actions" id="ask" style="display:none">
+      <button class="btn pulse" id="yes">&gt; sí, quiero 💖</button>
+      <button class="ghost" id="maybe">&gt; déjame pensarlo…</button>
+    </div>
+    <p class="msg" id="msg">Gracias por decir que sí. Prometo cuidar cada momento que construyamos juntos. 💖</p>
   </section>
 </main>
 
@@ -128,29 +143,7 @@ h1 em{font-style:italic;font-weight:600;color:var(--blush)}
 const $ = id => document.getElementById(id);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-/* ---------- Fecha objetivo: próximo sábado 1:00 p. m. ---------- */
-function nextSaturday(){
-  const now = new Date(), t = new Date(now);
-  let add = (6 - now.getDay() + 7) % 7;
-  if (add === 0 && now.getHours() >= 13) add = 7;
-  t.setDate(now.getDate() + add); t.setHours(13,0,0,0);
-  return t;
-}
-const target = nextSaturday();
-const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-$('when').textContent = `${dias[target.getDay()]} ${target.getDate()} · 1:00 p. m.`;
-
-function tick(){
-  const diff = Math.max(0, target - new Date());
-  const v = {
-    d: Math.floor(diff/864e5), h: Math.floor(diff/36e5%24),
-    m: Math.floor(diff/6e4%60), s: Math.floor(diff/1e3%60)
-  };
-  for (const k in v) $(k).textContent = String(v[k]).padStart(2,'0');
-  const st = $('st'); st.classList.remove('tick'); void st.offsetWidth; st.classList.add('tick');
-}
-
-/* ---------- Secuencia de arranque ---------- */
+/* ---------- Arranque ---------- */
 async function typeLine(text, cls=''){
   const line = document.createElement('div');
   if (cls) line.className = cls;
@@ -158,25 +151,42 @@ async function typeLine(text, cls=''){
   line.classList.add('cur');
   for (const ch of text){ line.textContent += ch; await sleep(22); }
   line.classList.remove('cur');
-  return line;
 }
 async function boot(){
   await sleep(400);
-  await typeLine('> ./activar_sorpresa.sh');
+  await typeLine('> ./abrir_carta.sh');
   await sleep(300);
-  await typeLine('cargando cariño…');
+  await typeLine('desencriptando mensaje…');
   const meter = document.createElement('div');
   meter.className = 'meter'; meter.innerHTML = '<b></b>';
   $('boot').appendChild(meter);
-  const bar = meter.firstChild;
-  for (let p = 0; p <= 100; p += 4){ bar.style.width = p + '%'; await sleep(28); }
-  await typeLine('[ok] Status: Live', 'ok');
+  for (let p = 0; p <= 100; p += 4){ meter.firstChild.style.width = p + '%'; await sleep(28); }
+  await typeLine('[ok] carta lista', 'ok');
   await sleep(700);
   $('win').classList.add('done');
-  tick(); setInterval(tick, 1000);
+  show(0);
 }
 
-/* ---------- Corazones y confeti ---------- */
+/* ---------- Páginas de la carta ---------- */
+const pages = [...document.querySelectorAll('.page')];
+const dots = $('dots');
+pages.forEach(() => dots.appendChild(document.createElement('b')));
+let cur = 0;
+
+function show(n){
+  cur = n;
+  pages.forEach((p, i) => p.classList.toggle('on', i === n));
+  [...dots.children].forEach((d, i) => d.classList.toggle('on', i === n));
+  const last = n === pages.length - 1;
+  $('actions').style.display = last ? 'none' : 'flex';
+  $('ask').style.display = last ? 'flex' : 'none';
+  $('prev').hidden = n === 0;
+  $('next').textContent = n === pages.length - 2 ? '> y entonces…' : '> continuar';
+}
+$('next').addEventListener('click', () => show(Math.min(cur + 1, pages.length - 1)));
+$('prev').addEventListener('click', () => show(Math.max(cur - 1, 0)));
+
+/* ---------- Corazones ---------- */
 function burst(x, y, n=46){
   const set = ['💖','💘','🌹','✨','💗','❤️'];
   for (let i = 0; i < n; i++){
@@ -196,16 +206,16 @@ function burst(x, y, n=46){
 
 $('yes').addEventListener('click', e => {
   const b = e.currentTarget, r = b.getBoundingClientRect();
-  b.textContent = '> me encantó, nos vemos 💖';
-  b.classList.add('yes'); b.disabled = true;
+  b.textContent = '> me hiciste el día 💖';
+  b.classList.remove('pulse'); b.classList.add('yes'); b.disabled = true;
   $('maybe').style.display = 'none';
-  const cx = r.left + r.width/2, cy = r.top + r.height/2;
-  burst(cx, cy, 50);
+  burst(r.left + r.width/2, r.top + r.height/2, 50);
   setTimeout(() => burst(innerWidth/2, innerHeight/3, 40), 500);
+  setTimeout(() => burst(innerWidth/2, innerHeight/2, 40), 1100);
   $('msg').classList.add('show');
 });
 
-/* El botón "pensarlo" se escabulle (con humor) */
+/* El botón "pensarlo" se escabulle */
 let tries = 0;
 const maybe = $('maybe');
 const lines = ['> mmm… mejor no','> ¡casi! 😏','> ya casi lo logras…','> ok, me rindo 💖'];
@@ -216,8 +226,7 @@ function dodge(){
     maybe.onclick = () => $('yes').click();
     return;
   }
-  const x = (Math.random() - .5) * 220, y = (Math.random() - .5) * 90;
-  maybe.style.transform = `translate(${x}px,${y}px) rotate(${(Math.random()-.5)*14}deg)`;
+  maybe.style.transform = `translate(${(Math.random()-.5)*220}px,${(Math.random()-.5)*90}px) rotate(${(Math.random()-.5)*14}deg)`;
   maybe.textContent = lines[tries];
   tries++;
 }
